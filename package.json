@@ -1,0 +1,28 @@
+{
+  "name": "indexed_db_todo_app",
+  "version": "1.0.0",
+  "description": "A sample app to demonstrate how to use the indexed_db API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development"
+  },
+  "keywords": [
+    "example",
+    "tutorial",
+    "project",
+    "javascript",
+    "database"
+  ],
+  "author": "Miguel Manjarres",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
