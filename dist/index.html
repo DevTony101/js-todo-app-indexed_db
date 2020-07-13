@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/css/index.css">
-  <title>To-Do App</title>
-</head>
-<body>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../node_modules/bulma/css/bulma.min.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <title>To-Do App</title>
+  </head>
+  <body>
+    <div class="container is-fluid mt-5">
+      <div class="card main-content">
+        <div class="card-content">
+          <p class="title">To-Do Application</p>
+          <p class="subtitle">Learning the Basics of the IndexedDB API!</p>
+          <hr />
+          <p class="is-size-4" style="text-align: end;">
+            Create a New Task
+          </p>
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input
+                id="itTitle"
+                class="input"
+                type="text"
+                placeholder="Learn How to Use the IndexedDB API"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Ffinish reading the tutorial and leave feedback!"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary is-light">Create</button>
+            </div>
+            <div class="control">
+              <button class="button is-danger is-light">Reset</button>
+            </div>
+          </div>
+          <hr />
+          <p class="is-size-4" style="text-align: end;">
+            My Tasks
+          </p>
+          <div class="task-container mt-5">
+            <p>There are no tasks to be shown.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
