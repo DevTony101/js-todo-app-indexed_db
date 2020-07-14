@@ -17,36 +17,47 @@
           <p class="is-size-4" style="text-align: end;">
             Create a New Task
           </p>
-          <div class="field">
-            <label class="label">Title</label>
-            <div class="control">
-              <input
-                id="itTitle"
-                class="input"
-                type="text"
-                placeholder="Learn How to Use the IndexedDB API"
-              />
+          <form autocomplete="off">
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <input
+                  id="itTitle"
+                  class="input"
+                  type="text"
+                  placeholder="Learn How to Use the IndexedDB API"
+                />
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Description</label>
-            <div class="control">
-              <textarea
-                class="textarea"
-                placeholder="Ffinish reading the tutorial and leave feedback!"
-              ></textarea>
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <textarea
+                  id="itDescription"
+                  class="textarea"
+                  placeholder="Ffinish reading the tutorial and leave feedback!"
+                ></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-primary is-light">Create</button>
+            <div class="field is-grouped">
+              <div class="control">
+                <button
+                  id="btnCreate"
+                  type="submit"
+                  class="button is-primary is-light"
+                >
+                  Create
+                </button>
+              </div>
+              <div class="control">
+                <button id="btnReset" class="button is-danger is-light">
+                  Reset
+                </button>
+              </div>
             </div>
-            <div class="control">
-              <button class="button is-danger is-light">Reset</button>
-            </div>
-          </div>
+          </form>
           <hr />
           <p class="is-size-4" style="text-align: end;">
             My Tasks
