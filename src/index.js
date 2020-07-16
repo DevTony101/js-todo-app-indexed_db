@@ -1,3 +1,5 @@
+import Database from "./database/database";
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
   form.addEventListener("submit", saveTask);
