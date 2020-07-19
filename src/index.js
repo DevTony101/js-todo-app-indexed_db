@@ -16,4 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Task added successfully!");
     }
   }
+
+  function showTasks() {
+    // Leave the div empty
+    while (tasksContainer.firstChild) tasksContainer.removeChild(tasksContainer.firstChild);
+  }
 });
