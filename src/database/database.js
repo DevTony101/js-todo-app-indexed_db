@@ -27,6 +27,7 @@ export default class Database {
       const objectStore = transaction.objectStore(this.name);
       const request = objectStore.add(task);
       if (typeof success === "function") request.onsuccess = success;
+      return transaction;
     } else {
       throw new Error("An object was expected.");
     }

@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
     const task = {title, description};
-    // TODO: Implement the logic for creating new tasks...
+    const transaction = database.persist(task, () => form.reset());
+    transaction.oncomplete = () => {
+      console.log("Task added successfully!");
+    }
   }
 });
