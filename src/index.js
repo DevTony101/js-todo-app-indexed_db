@@ -3,6 +3,7 @@ import Database from "./database/database";
 document.addEventListener("DOMContentLoaded", () => {
   const database = new Database("DBTasks", 1, "title, description");
   const form = document.querySelector("form");
+  const tasksContainer = document.querySelector("#task-container");
   form.addEventListener("submit", saveTask);
 
   function saveTask(event) {
