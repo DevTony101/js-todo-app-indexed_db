@@ -18,7 +18,7 @@ Here are the starting and finished code templates for each part of the tutorial 
 | Second Part (Creating the getAll function) | [Starting Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/starting-code-part-two) | coming soon           |
 | Third Part                                 | coming soon                                                                                              | coming soon                                                                                               |
 
-Once you download the code. Execute the following commands.
+Once you download the code, execute the following commands.
 
 To install all the dependices:
 ```
