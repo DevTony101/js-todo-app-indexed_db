@@ -20,7 +20,7 @@ Here are the starting and finished code templates for each part of the tutorial 
 
 Once you download the code, execute the following commands.
 
-To install all the dependices:
+To install all the dependencies:
 ```
 npm install
 ```
