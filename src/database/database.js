@@ -32,4 +32,10 @@ export default class Database {
       throw new Error("An object was expected.");
     }
   }
+
+  getOpenCursor() {
+    const transaction = this.indexedDB.transaction([this.name], "readonly");
+    const objectStore = transaction.objectStore(this.name);
+    return objectStore.openCursor();
+  }
 }
