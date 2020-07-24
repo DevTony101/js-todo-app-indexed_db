@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
+      showTasks();
     }
   }
 
@@ -42,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Step 4
         cursor.continue();
       } else {
-        // There is no data or we have come to the end of the table
+        const text = document.createElement("p");
+        text.textContent = "There are no tasks to be shown.";
+        tasksContainer.appendChild(text);
       }
     }
   }
