@@ -1,5 +1,5 @@
 export default class Database {
-  constructor(name, version, fields) {
+  constructor(name, version) {
     this.name = name;
     this.version = version;
     this.indexedDB = {};
@@ -8,7 +8,9 @@ export default class Database {
       console.log(`Database ${name}: created successfully`);
       this.indexedDB = this.database.result;
     }
+  }
 
+  init(fields, successCallback) {
     this.database.onupgradeneeded = event => {
       const instance = event.target.result;
       const objectStore = instance.createObjectStore(name, {
@@ -18,6 +20,8 @@ export default class Database {
 
       if (typeof fields === "string") fields = fields.split(",").map(s => s.trim());
       for (let field of fields) objectStore.createIndex(field, field);
+
+      if (typeof successCallback === "function") successCallback();
     }
   }
 
