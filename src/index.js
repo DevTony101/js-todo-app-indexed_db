@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
+      showTasks();
     }
   }
 
