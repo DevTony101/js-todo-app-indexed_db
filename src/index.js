@@ -25,7 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const cursor = event.target.result;
       if (cursor) {
         const {title, description} = cursor.value;
-        // Advance to the next record
+        // Step 1
+        const message = document.createElement("article");
+        message.classList.add("message");
+        // Step 2
+        message.innerHTML = `
+          <div class="message-header">
+            <p>${title}</p>
+          </div>
+          <div class="message-body">
+            <p>${description}</p>
+          </div>
+        `;
+        // Step 3
+        tasksContainer.appendChild(message);
+        // Step 4
         cursor.continue();
       } else {
         // There is no data or we have come to the end of the table
