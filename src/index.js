@@ -42,9 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Step 4
         cursor.continue();
       } else {
-        const text = document.createElement("p");
-        text.textContent = "There are no tasks to be shown.";
-        tasksContainer.appendChild(text);
+        if (!tasksContainer.firstChild) {
+          const text = document.createElement("p");
+          text.textContent = "There are no tasks to be shown.";
+          tasksContainer.appendChild(text);
+        }
       }
     }
   }
