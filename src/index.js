@@ -20,5 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function showTasks() {
     // Leave the div empty
     while (tasksContainer.firstChild) tasksContainer.removeChild(tasksContainer.firstChild);
+    const request = database.getOpenCursor();
+    request.onsuccess = event => {
+      const cursor = event.target.result;
+      if (cursor) {
+        const {title, description} = cursor.value;
+        // Advance to the next record
+        cursor.continue();
+      } else {
+        // There is no data or we have come to the end of the table
+      }
+    }
   }
 });
