@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
-      showTasks();
     }
   }
 
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const {title, description} = cursor.value;
         // Step 1
         const message = document.createElement("article");
-        message.classList.add("message");
+        message.classList.add("message", "is-primary");
         // Step 2
         message.innerHTML = `
           <div class="message-header">
