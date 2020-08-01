@@ -45,7 +45,7 @@ export default class Database {
 
   delete(id, success) {
     if (typeof id === "number") {
-      const transaction = this.indexedDB.transaction([this.name], "readonly");
+      const transaction = this.indexedDB.transaction([this.name], "readwrite");
       const objectStore = transaction.objectStore(this.name);
       const request = objectStore.delete(id);
       if (typeof success === "function") transaction.oncomplete = success;
