@@ -59,7 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const task = header.parentElement;
     const id = Number(task.getAttribute("data-id"));
     database.delete(id, () => {
-      // Success callback
+      // Step 1
+      tasksContainer.removeChild(task);
+
+      // Step 2
+      if (!tasksContainer.firstChild) {
+        const text = document.createElement("p");
+        text.textContent = "There are no tasks to be shown.";
+        tasksContainer.appendChild(text);
+      }
+
+      // Optional Step 3: Console log for debugging purposes
+      console.log(`Task with id ${id} deleted successfully.`);
     });
   }
 });
