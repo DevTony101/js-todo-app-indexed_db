@@ -53,4 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  function removeTask(event) {
+    const header = event.target.parentElement;
+    const task = header.parentElement;
+    const id = Number(task.getAttribute("data-id"));
+    database.delete(id, () => {
+      // Success callback
+    });
+  }
 });
