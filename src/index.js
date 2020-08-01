@@ -26,10 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     request.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
-        const {title, description} = cursor.value;
+        const {key, title, description} = cursor.value;
         // Step 1
         const message = document.createElement("article");
         message.classList.add("message", "is-primary");
+        message.setAttribute("data-id", key);
         // Step 2
         message.innerHTML = `
           <div class="message-header">
