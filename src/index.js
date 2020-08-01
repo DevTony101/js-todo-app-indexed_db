@@ -27,11 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const cursor = event.target.result;
       if (cursor) {
         const {key, title, description} = cursor.value;
-        // Step 1
         const message = document.createElement("article");
         message.classList.add("message", "is-primary");
         message.setAttribute("data-id", key);
-        // Step 2
         message.innerHTML = `
           <div class="message-header">
             <p>${title}</p>
@@ -40,9 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>${description}</p>
           </div>
         `;
-        // Step 3
+
+        // Creating the delete button element
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete");
+        deleteButton.setAttribute("aria-label", "delete");
+        deleteButton.onclick = removeTask;
+
+        // Adding it to the div message header
+        message.firstChild.nextSibling.appendChild(deleteButton);
         tasksContainer.appendChild(message);
-        // Step 4
         cursor.continue();
       } else {
         if (!tasksContainer.firstChild) {
