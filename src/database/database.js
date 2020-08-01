@@ -42,4 +42,14 @@ export default class Database {
     const objectStore = transaction.objectStore(this.name);
     return objectStore.openCursor();
   }
+
+  delete(id) {
+    if (typeof id === "number") {
+      const transaction = this.indexedDB.transaction([this.name], "readonly");
+      const objectStore = transaction.objectStore(this.name);
+      // TODO: Add the logic
+    } else {
+      throw new Error("Variable 'id' is expected to be a number.");
+    }
+  }
 }
