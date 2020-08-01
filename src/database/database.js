@@ -50,7 +50,7 @@ export default class Database {
       const request = objectStore.delete(id);
       if (typeof success === "function") transaction.oncomplete = success;
     } else {
-      throw new Error("Variable 'id' is expected to be a number.");
+      throw new Error("Parameter 'id' expected to be a number.");
     }
   }
 }
