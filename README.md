@@ -5,7 +5,7 @@
 This a sample project, product of a series of tutorials made by myself on **DEV**. The aim is to teach/learn the basics of the IndexedDB API, specifically:
 
 - Learn about the concepts of transactions, requests, object stores
-- Learn how to perform CRUD operations in the IndexedDB instance
+- Learn how to perform **CRUD** operations in the IndexedDB instance
 
 You can read the blog [here](https://dev.to/devtony101/javascript-building-a-to-do-app-with-the-indexeddb-api-part-1-4382).
 
