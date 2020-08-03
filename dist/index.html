@@ -56,5 +56,14 @@
   </div>
 </div>
 <script src="main.js"></script>
+<script>
+  if (window.innerWidth <= 400) {
+    document.querySelector(".title").classList.add("is-4");
+    document.querySelector(".subtitle").classList.add("is-6");
+  } else {
+    document.querySelector(".title").classList.remove("is-4");
+    document.querySelector(".subtitle").classList.remove("is-6");
+  }
+</script>
 </body>
 </html>
