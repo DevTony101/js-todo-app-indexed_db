@@ -1,5 +1,7 @@
 # TO-DO Web Application
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1955bdc7-8239-4b5e-ac30-b817283b057e/deploy-status)](https://app.netlify.com/sites/indexed-todo-app/deploys)
+
 ![banner](https://github.com/DevTony101/js-todo-app-indexed_db/blob/master/banner.png)
 
 This a sample project, product of a series of tutorials made by myself on **DEV**. The aim is to teach/learn the basics of the IndexedDB API, specifically:
