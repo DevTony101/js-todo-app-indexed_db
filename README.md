@@ -16,7 +16,7 @@ Here are the starting and finished code templates for each part of the tutorial 
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | First Part (Creating the `persist` function) | [Starting Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/starter-code-part-one)  | [Finished Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/finished-code-part-one) |
 | Second Part (Creating the `getOpenCursor` function) | [Starting Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/starting-code-part-two) | [Finished Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/finished-code-part-two) |
-| Third Part                                 | coming soon                                                                                              | coming soon                                                                                               |
+| Third Part (Creating the `delete` function) | [Starting Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/starting-code-part-three) | [Finished Code](https://github.com/DevTony101/js-todo-app-indexed_db/releases/tag/finished-code-part-three) |
 
 Once you download the code, execute the following commands.
 
