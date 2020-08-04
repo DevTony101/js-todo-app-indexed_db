@@ -9,10 +9,6 @@ body {
   margin: 0;
 }
 
-.main-content {
-  border-radius: 1em;
-}
-
 ::-webkit-scrollbar {
   width: 5px;
   height: 11px;
@@ -50,5 +46,15 @@ body {
 @media (max-width: 400px) {
   form {
     margin-top: 20px;
+  }
+
+  .main-content {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 400px) {
+  .main-content {
+    border-radius: 1em;
   }
 }
