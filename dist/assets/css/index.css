@@ -43,6 +43,15 @@ body {
   background: transparent;
 }
 
+#gh-link {
+  position: absolute;
+  color: grey;
+}
+
+#gh-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 400px) {
   form {
     margin-top: 20px;
@@ -51,10 +60,28 @@ body {
   .main-content {
     border-radius: 0;
   }
+
+  #gh-link {
+    right: 10px;
+    top: 10px;
+  }
+
+  #gh-span-link {
+    display: none;
+  }
 }
 
 @media (min-width: 400px) {
   .main-content {
     border-radius: 1em;
+  }
+
+  #gh-link {
+    right: 20px;
+    top: 20px;
+  }
+
+  #gh-span-link {
+    display: inline-block;
   }
 }
