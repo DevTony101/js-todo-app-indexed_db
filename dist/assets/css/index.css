@@ -85,3 +85,12 @@ body {
     display: inline-block;
   }
 }
+
+.title-message{
+  flex: 1 0 0;
+  margin-left: 8px;
+}
+
+.message.completed *{
+  text-decoration: line-through;
+}

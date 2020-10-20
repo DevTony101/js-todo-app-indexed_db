@@ -53,4 +53,30 @@ export default class Database {
       throw new Error("Parameter 'id' expected to be a number.");
     }
   }
+
+  maskCompelete(id, success) {
+    if (typeof id === "number") {
+      const transaction = this.indexedDB.transaction([this.name], "readwrite");
+      const objectStore = transaction.objectStore(this.name);
+      let task = objectStore.get(id);
+
+      task.onsuccess = _ => {
+        var obj = task.result;
+        if(!obj) {
+          console.log('no matching object for id, canceling update', id);
+          return;
+        }
+  
+        console.log('loaded object to modify', obj);
+        obj.completed = true;
+        console.log('storing new object in place of old', obj);
+        objectStore.put(obj);
+      };
+   
+      if (typeof success === "function") transaction.oncomplete = success;
+    } else {
+      throw new Error("Parameter 'id' expected to be a number.");
+    }
+  }
+
 }

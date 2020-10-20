@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
-    const task = {title, description};
+    const task = {title, description, completed: false};
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
@@ -26,13 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
     request.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
-        const {key, title, description} = cursor.value;
+        const {key, title, description, completed } = cursor.value;
         const message = document.createElement("article");
-        message.classList.add("message", "is-primary");
+        message.classList.add("message");
+        if( completed ){
+          message.classList.add("is-dark", "completed")
+        }else{
+          message.classList.add("is-primary")
+        }
         message.setAttribute("data-id", key);
         message.innerHTML = `
           <div class="message-header">
-            <p>${title}</p>
+            <p class="title-message">${title}</p>
           </div>
           <div class="message-body">
             <p>${description}</p>
@@ -47,8 +52,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Adding it to the div message header
         message.firstChild.nextSibling.appendChild(deleteButton);
+
+        // Creating 
+        if( !completed ){
+          const completeButtom = document.createElement("button");
+          completeButtom.classList.add("button", "complete", "is-success", "is-light");
+          completeButtom.textContent = 'Complete'
+          completeButtom.onclick = markAsCompletTask;
+          message.querySelector('.message-header').insertAdjacentElement('afterbegin', completeButtom);
+        }
+
+        // Adding it to the div message header
         tasksContainer.appendChild(message);
         cursor.continue();
+
+
+
       } else {
         if (!tasksContainer.firstChild) {
           const text = document.createElement("p");
@@ -77,5 +96,23 @@ document.addEventListener("DOMContentLoaded", () => {
       // Optional Step 3: Console log for debugging purposes
       console.log(`Task with id ${id} deleted successfully.`);
     });
+  }
+
+  function markAsCompletTask(evemt) {
+    const header = event.target.parentElement;
+    const task = header.parentElement;
+    const id = Number(task.getAttribute("data-id"));
+
+    database.maskCompelete(id, () => {
+      console.log( 'task', task )
+      task.classList.toggle('is-primary')
+      task.classList.toggle('is-dark')
+
+      task.querySelector('.message-header button.complete').remove()
+      //console.log( task.querySelector('.message-header button.complete').remove() )
+      // Optional Step 3: Console log for debugging purposes
+      console.log(`Task with id ${id} mark to complete task successfully.`);
+    });
+
   }
 });
