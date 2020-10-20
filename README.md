@@ -1,5 +1,6 @@
-# TO-DO Web Application
+# TO-DO IndexedDB Web App
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/DevTony101/js-todo-app-indexed_db/blob/master/LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1955bdc7-8239-4b5e-ac30-b817283b057e/deploy-status)](https://app.netlify.com/sites/indexed-todo-app/deploys)
 
 ![banner](https://github.com/DevTony101/js-todo-app-indexed_db/blob/master/banner.png)
@@ -11,7 +12,7 @@ This a sample project, product of a series of tutorials made by myself on **DEV*
 
 You can read the blog [here](https://dev.to/devtony101/javascript-building-a-to-do-app-with-the-indexeddb-api-part-1-4382).
 
-## Want to Code Along?
+## Want to code along?
 Here are the starting and finished code templates for each part of the tutorial series.
 
 | Part                                       |                                                                                                           |                                                                                                           |
@@ -31,3 +32,6 @@ To start the local development server:
 ```
 npm run start   
 ```
+
+## How to contribute?
+Please refer to the [contributing guide](https://github.com/DevTony101/js-todo-app-indexed_db/blob/master/CONTRIBUTING.md).
