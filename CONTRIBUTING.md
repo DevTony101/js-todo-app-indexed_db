@@ -4,6 +4,8 @@ I'm really glad you want to contribute to this little project! Before you contin
 
 - This project uses **vanilla** JavaScript
 - This project uses **Bulma** as its CSS framework
+- This project uses **webpack**
+- This project is deployed on **Netlify**
 - This project was made as a complement for a tutorial on how to use the **IndexedDB API**, therefore, the code *must* be as clear as possible, more on that in the next section
 
 ## Where do I start?
