@@ -16,7 +16,7 @@
     "database"
   ],
   "author": "Miguel Manjarres",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
