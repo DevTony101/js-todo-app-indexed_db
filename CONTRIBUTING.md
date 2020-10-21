@@ -15,12 +15,13 @@ open a new issue.
 
 ### Setup local project
 
-1. Create a fork of this project
-2. Clone the project
+1. Star this project
+2. Create a fork of this project
+3. Clone the project
 ```
 git clone https://github.com/<YOUR_GITHUB_USERNAME>/js-todo-app-indexed_db.git
 ```
-3. Install the dependencies using the following command
+4. Install the dependencies using the following command
 ```
 cd js-todo-app-indexed_db
 npm i
