@@ -43,6 +43,31 @@ export default class Database {
     return objectStore.openCursor();
   }
 
+  // retrieving particular record from DB by id
+  getField(id) {
+    if(typeof id === "number"){
+      const transaction = this.indexedDB.transaction([this.name],"readonly");
+      const objectStore = transaction.objectStore(this.name);
+      const request = objectStore.get(id);
+      return request;
+    } else {
+      throw new Error("Parameter 'id' expected to be a number.");
+    }
+  }
+
+  // saving the changes made in the particular record
+  saveChanges(task, success) {
+    if(typeof task === "object") {
+      const transaction = this.indexedDB.transaction([this.name], "readwrite");
+      const objectStore = transaction.objectStore(this.name);
+      const request = objectStore.put(task);
+      if (typeof success === "function") request.onsuccess = success;
+      return transaction;
+    } else {
+      throw new Error("An object was expected");
+    }
+  }
+
   delete(id, success) {
     if (typeof id === "number") {
       const transaction = this.indexedDB.transaction([this.name], "readwrite");
