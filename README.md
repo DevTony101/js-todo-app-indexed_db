@@ -12,6 +12,12 @@ This a sample project, product of a series of tutorials made by myself on **DEV*
 
 You can read the blog [here](https://dev.to/devtony101/javascript-building-a-to-do-app-with-the-indexeddb-api-part-1-4382).
 
+## Features
+
+- **Create a task**: You can create a brand new task with a given title and description. Later that task is saved using JavaScript IndexedDB API.
+- **Show saved tasks**: Everytime the page loads it will query the indexed database to get all saved tasks and display them as panels at the bottom of the page.
+- **Edit a task**: You can edit any given task at any given moment.
+
 ## Want to code along?
 Here are the starting and finished code templates for each part of the tutorial series.
 
