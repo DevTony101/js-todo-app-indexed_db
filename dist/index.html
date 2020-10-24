@@ -29,7 +29,7 @@
       </a>
       <hr/>
       <p class="is-size-4" style="text-align: end;">Create a New Task</p>
-      <form autocomplete="off">
+      <form autocomplete="off" id="save-task">
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
@@ -61,6 +61,36 @@
         <p>There are no tasks to be shown.</p>
       </div>
     </div>
+  </div>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <button class="delete close"></button>
+      <form autocomplete="off" id="task-edit">
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <input id="editTitle" class="input" type="text" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <textarea id="editDescription" class="textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="btnsave" type="submit" class="button is-primary">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
   </div>
 </div>
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
