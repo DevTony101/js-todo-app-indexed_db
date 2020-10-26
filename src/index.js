@@ -10,22 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
   var span = document.getElementsByClassName("close")[0];
   span.onclick = closeModal;
 
-  window.onclick = function(event) {
+  window.onclick = function (event) {
     if (event.target == modal) {
       closeModal();
     }
-  }
+  };
 
   function saveTask(event) {
     event.preventDefault();
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
-    const task = {title, description};
+    const task = { title, description };
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
       showTasks();
-    }
+    };
   }
 
   // function for taking in the values obtained in the form of modal and sending to database
@@ -34,24 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = Number(event.target.getAttribute("data-id"));
     const title = document.querySelector("#editTitle").value;
     const description = document.querySelector("#editDescription").value;
-    const task = {title, description, key};
-    const form = document.querySelector("#task-edit")
+    const task = { title, description, key };
+    const form = document.querySelector("#task-edit");
     const transaction = database.saveChanges(task, () => form.reset());
     transaction.oncomplete = () => {
       closeModal();
       console.log("Task edited successfully!");
       showTasks();
-    }
+    };
   }
 
   function showTasks() {
     // Leave the div empty
-    while (tasksContainer.firstChild) tasksContainer.removeChild(tasksContainer.firstChild);
+    while (tasksContainer.firstChild)
+      tasksContainer.removeChild(tasksContainer.firstChild);
     const request = database.getOpenCursor();
-    request.onsuccess = event => {
+    request.onsuccess = (event) => {
       const cursor = event.target.result;
       if (cursor) {
-        const {key, title, description} = cursor.value;
+        const { key, title, description } = cursor.value;
         const message = document.createElement("article");
         message.classList.add("message", "is-primary");
         message.setAttribute("data-id", key);
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="message-header">
             <p>${title}</p>
           </div>
-          <div class="message-body">
+          <div class="message-body" style="display: flex; justify-content: space-between; align-items: top;">
             <p>${description}</p>
           </div>
         `;
@@ -78,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const editButton = document.createElement("button");
         editButton.classList.add("button");
         editButton.innerHTML = "Edit";
-        editButton.setAttribute("aria-label","edit");
-        editButton.style.marginTop = "20px";
+        editButton.setAttribute("aria-label", "edit");
         editButton.onclick = editTask;
 
         // Adding it to the div message body
@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tasksContainer.appendChild(message);
 
         cursor.continue();
-
       } else {
         if (!tasksContainer.firstChild) {
           const text = document.createElement("p");
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
           tasksContainer.appendChild(text);
         }
       }
-    }
+    };
   }
 
   function removeTask(event) {
@@ -121,22 +120,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // filling up the modal with values of the respective to-do task
-  function editTask(event){
+  function editTask(event) {
     const header = event.target.parentElement;
     const task = header.parentElement;
     const id = Number(task.getAttribute("data-id"));
     const val = database.getField(id);
     val.onsuccess = () => {
-      const {key, title, description} = val.result;
+      const { key, title, description } = val.result;
       var editTitle = document.getElementById("editTitle");
-      editTitle.setAttribute("value",title);
+      editTitle.setAttribute("value", title);
 
       var editDescription = document.getElementById("editDescription");
       editDescription.innerHTML = description;
-    }
+    };
     modal.style.display = "block";
     var saveChange = document.querySelector("#btnsave");
-    saveChange.setAttribute("data-id",id);
+    saveChange.setAttribute("data-id", id);
     saveChange.onclick = changeTask;
   }
 
