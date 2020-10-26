@@ -78,4 +78,20 @@ export default class Database {
       throw new Error("Parameter 'id' expected to be a number.");
     }
   }
+
+  toggleDone(id, isDone, success) {
+    if (typeof id === "number") {
+      const transaction = this.indexedDB.transaction([this.name], "readwrite");
+      const objectStore = transaction.objectStore(this.name);
+      objectStore.get(id).onsuccess = function (event) {
+        const task = event.target.result;
+        task.done = isDone;
+        const request = objectStore.put(task);
+        if (typeof success === "function") request.onsuccess = success;
+      };
+      return transaction;
+    } else {
+      throw new Error("Parameter 'id' expected to be a number.");
+    }
+  }
 }

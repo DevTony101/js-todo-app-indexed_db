@@ -2,7 +2,7 @@ import Database from "./database/database";
 
 document.addEventListener("DOMContentLoaded", () => {
   const database = new Database("DBTasks", 1);
-  database.init("title, description", () => showTasks());
+  database.init("title, description, done", () => showTasks());
   const form = document.querySelector("#save-task");
   const tasksContainer = document.querySelector("#task-container");
   form.addEventListener("submit", saveTask);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
-    const task = {title, description};
+    const task = {title, description, done: false};
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = Number(event.target.getAttribute("data-id"));
     const title = document.querySelector("#editTitle").value;
     const description = document.querySelector("#editDescription").value;
-    const task = {title, description, key};
+    const done = document.querySelector("#editDone").checked;
+    const task = {title, description, done, key};
     const form = document.querySelector("#task-edit")
     const transaction = database.saveChanges(task, () => form.reset());
     transaction.oncomplete = () => {
@@ -51,18 +52,26 @@ document.addEventListener("DOMContentLoaded", () => {
     request.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
-        const {key, title, description} = cursor.value;
+        const {key, title, description, done} = cursor.value;
+
+        // Message container
         const message = document.createElement("article");
         message.classList.add("message", "is-primary");
+        message.classList.toggle("is-done", done);
         message.setAttribute("data-id", key);
-        message.innerHTML = `
-          <div class="message-header">
-            <p>${title}</p>
-          </div>
-          <div class="message-body">
-            <p>${description}</p>
-          </div>
-        `;
+        tasksContainer.appendChild(message);
+
+        // Message header
+        const messageHeader = document.createElement("div");
+        messageHeader.classList.add("message-header");
+        messageHeader.innerHTML = `<p>${title}</p>`;
+        message.appendChild(messageHeader);
+
+        // Message body
+        const messageBody = document.createElement("div");
+        messageBody.classList.add("message-body");
+        messageBody.innerHTML = `<p>${description}</p>`;
+        message.appendChild(messageBody);
 
         // Creating the delete button element
         const deleteButton = document.createElement("button");
@@ -71,22 +80,35 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteButton.onclick = removeTask;
 
         // Adding it to the div message header
-        message.firstChild.nextSibling.appendChild(deleteButton);
-        tasksContainer.appendChild(message);
+        messageHeader.appendChild(deleteButton);
+
+        // Add a container for controls
+        const controlsContainer = document.createElement("div");
+        controlsContainer.classList.add("mt-4", "is-flex", "is-align-items-baseline");
+        messageBody.appendChild(controlsContainer);
 
         // Creating the edit task button element
         const editButton = document.createElement("button");
         editButton.classList.add("button");
         editButton.innerHTML = "Edit";
         editButton.setAttribute("aria-label","edit");
-        editButton.style.marginTop = "20px";
         editButton.onclick = editTask;
 
-        // Adding it to the div message body
-        console.log(message.children[1]);
-        // console.log(message.children[-1]);
-        message.children[1].appendChild(editButton);
-        tasksContainer.appendChild(message);
+        // Adding it to the controls container
+        controlsContainer.appendChild(editButton);
+
+        // Creating the "done" checkbox
+        const doneLabel = document.createElement("label");
+        doneLabel.classList.add("checkbox", "ml-4");
+        const doneCheckbox = document.createElement("input");
+        doneCheckbox.setAttribute("type", "checkbox");
+        doneCheckbox.checked = done;
+        doneCheckbox.onchange = toggleTaskDone;
+        doneLabel.appendChild(doneCheckbox);
+        doneLabel.appendChild(document.createTextNode(" Done"));
+
+        // Adding it to the controls container
+        controlsContainer.appendChild(doneLabel);
 
         cursor.continue();
 
@@ -101,8 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function removeTask(event) {
-    const header = event.target.parentElement;
-    const task = header.parentElement;
+    const task = event.currentTarget.closest(".message");
     const id = Number(task.getAttribute("data-id"));
     database.delete(id, () => {
       // Step 1
@@ -120,19 +141,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function toggleTaskDone(event) {
+    const task = event.currentTarget.closest(".message");
+    const isDone = event.currentTarget.checked;
+    const id = Number(task.dataset.id);
+    database.toggleDone(id, isDone, () => {
+      task.classList.toggle("is-done", isDone);
+    });
+  }
+
   // filling up the modal with values of the respective to-do task
   function editTask(event){
-    const header = event.target.parentElement;
-    const task = header.parentElement;
+    const task = event.currentTarget.closest(".message");
     const id = Number(task.getAttribute("data-id"));
     const val = database.getField(id);
     val.onsuccess = () => {
-      const {key, title, description} = val.result;
+      const {key, title, description, done} = val.result;
       var editTitle = document.getElementById("editTitle");
       editTitle.setAttribute("value",title);
 
       var editDescription = document.getElementById("editDescription");
       editDescription.innerHTML = description;
+
+      document.getElementById("editDone").checked = done;
     }
     modal.style.display = "block";
     var saveChange = document.querySelector("#btnsave");
