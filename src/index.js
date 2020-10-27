@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Message container
         const message = document.createElement("article");
-        message.classList.add("message", "is-primary");
+        message.classList.add("message", done ? "is-secondary" : "is-primary");
         message.classList.toggle("is-done", done);
         message.setAttribute("data-id", key);
         tasksContainer.appendChild(message);
@@ -147,6 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = Number(task.dataset.id);
     database.toggleDone(id, isDone, () => {
       task.classList.toggle("is-done", isDone);
+      task.classList.toggle("is-primary", !isDone);
+      task.classList.toggle("is-secondary", isDone);
     });
   }
 
