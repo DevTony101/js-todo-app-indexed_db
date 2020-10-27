@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Message body
         const messageBody = document.createElement("div");
-        messageBody.classList.add("message-body");
+        messageBody.classList.add("message-body", "level");
         messageBody.innerHTML = `<p>${description}</p>`;
         message.appendChild(messageBody);
 
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add a container for controls
         const controlsContainer = document.createElement("div");
-        controlsContainer.classList.add("mt-4", "is-flex", "is-align-items-baseline");
+        controlsContainer.classList.add("mt-4", "is-flex", "is-align-items-baseline", "level-right");
         messageBody.appendChild(controlsContainer);
 
         // Creating the edit task button element
