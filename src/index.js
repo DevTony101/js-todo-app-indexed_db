@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
-    const task = {title, description, done: false};
+    const date = document.querySelector("#itDate").value;
+    const task = {title, description, date, done: false};
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
@@ -34,8 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = Number(event.target.getAttribute("data-id"));
     const title = document.querySelector("#editTitle").value;
     const description = document.querySelector("#editDescription").value;
+    const date = document.querySelector("#editDate").value;
     const done = document.querySelector("#editDone").checked;
-    const task = {title, description, done, key};
+    const task = {title, description, date, done, key};
     const form = document.querySelector("#task-edit")
     const transaction = database.saveChanges(task, () => form.reset());
     transaction.oncomplete = () => {
@@ -52,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     request.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
-        const {key, title, description, done} = cursor.value;
+        const {key, title, description, date, done} = cursor.value;
 
         // Message container
         const message = document.createElement("article");
@@ -64,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Message header
         const messageHeader = document.createElement("div");
         messageHeader.classList.add("message-header");
-        messageHeader.innerHTML = `<p>${title}</p>`;
+        messageHeader.innerHTML = `<p>${title}${date ? ` ${date}` : ''}</p>`;
         message.appendChild(messageHeader);
 
         // Message body
@@ -158,12 +160,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = Number(task.getAttribute("data-id"));
     const val = database.getField(id);
     val.onsuccess = () => {
-      const {key, title, description, done} = val.result;
+      const {key, title, description, date, done} = val.result;
       var editTitle = document.getElementById("editTitle");
-      editTitle.setAttribute("value",title);
+      editTitle.setAttribute("value", title);
 
       var editDescription = document.getElementById("editDescription");
       editDescription.innerHTML = description;
+
+      var editDate = document.getElementById("editDate");
+      editDate.setAttribute("value", date)
 
       document.getElementById("editDone").checked = done;
     }
