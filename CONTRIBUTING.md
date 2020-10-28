@@ -56,6 +56,8 @@ git add .
 git commit -m "Fix: <ISSUE>"
 ```
 
+Additionally, if your contribution introduces a new functionality to the application, make sure to write about it on the [**features** section on the README file](https://github.com/DevTony101/js-todo-app-indexed_db#features).
+
 ### Pushing changes
 
 When you are ready, push your changes to GitHub using the following command:
