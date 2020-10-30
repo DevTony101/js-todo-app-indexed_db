@@ -31,9 +31,9 @@
       <p class="is-size-4" style="text-align: end;">Create a New Task</p>
       <form autocomplete="off" id="save-task">
         <div class="field">
-          <label class="label">Title</label>
+          <label class="label">Title *</label>
           <div class="control">
-            <input id="itTitle" class="input" type="text" placeholder="Learn How to Use the IndexedDB API"/>
+            <input id="itTitle" class="input" type="text" placeholder="Learn How to Use the IndexedDB API" required />
           </div>
         </div>
 
@@ -45,6 +45,17 @@
             ></textarea>
           </div>
         </div>
+
+        <div class="field">
+          <label class="label">Deadline</label>
+          <div class="control">
+            <input id="itDeadline" class="input" type="date" />
+          </div>
+        </div>
+
+        <p class="field help">
+          * indicates a required field
+        </p>
 
         <div class="field is-grouped">
           <div class="control">
@@ -80,6 +91,13 @@
           <label class="label">Description</label>
           <div class="control">
             <textarea id="editDescription" class="textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Deadline</label>
+          <div class="control">
+            <input id="editDeadline" class="input" type="date" />
           </div>
         </div>
 
