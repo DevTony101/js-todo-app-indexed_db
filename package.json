@@ -8,11 +8,6 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development"
   },
-  "devServer": {
-    "publicPath": "/",
-    "contentBase": "./src",
-    "hot": true
-  },
   "keywords": [
     "example",
     "tutorial",
