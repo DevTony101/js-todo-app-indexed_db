@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const title = document.querySelector("#itTitle").value;
     const description = document.querySelector("#itDescription").value;
-    const date = document.querySelector("#itDate").value;
-    const task = {title, description, date, done: false};
+    const deadline = document.querySelector("#itDeadline").value;
+    const task = {title, description, deadline, done: false};
     const transaction = database.persist(task, () => form.reset());
     transaction.oncomplete = () => {
       console.log("Task added successfully!");
@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = Number(event.target.getAttribute("data-id"));
     const title = document.querySelector("#editTitle").value;
     const description = document.querySelector("#editDescription").value;
-    const date = document.querySelector("#editDate").value;
+    const deadline = document.querySelector("#editDeadline").value;
     const done = document.querySelector("#editDone").checked;
-    const task = {title, description, date, done, key};
+    const task = {title, description, deadline, done, key};
     const form = document.querySelector("#task-edit")
     const transaction = database.saveChanges(task, () => form.reset());
     transaction.oncomplete = () => {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     request.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
-        const {key, title, description, date, done} = cursor.value;
+        const {key, title, description, deadline, done} = cursor.value;
 
         // Message container
         const message = document.createElement("article");
@@ -66,14 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Message header
         const messageHeader = document.createElement("div");
         messageHeader.classList.add("message-header");
-        messageHeader.innerHTML = `<p>${title}${date ? ` ${date}` : ''}</p>`;
+        messageHeader.innerHTML = `<p>${title}</p>`;
         message.appendChild(messageHeader);
-
-        // Message body
-        const messageBody = document.createElement("div");
-        messageBody.classList.add("message-body", "level");
-        messageBody.innerHTML = `<p>${description}</p>`;
-        message.appendChild(messageBody);
 
         // Creating the delete button element
         const deleteButton = document.createElement("button");
@@ -81,8 +75,28 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteButton.setAttribute("aria-label", "delete");
         deleteButton.onclick = removeTask;
 
-        // Adding it to the div message header
-        messageHeader.appendChild(deleteButton);
+        /*
+        If the user added a deadline we create a container for it and
+        the delete button and add them to the message header
+        */
+        if (deadline) {
+          const deadlineSpan = document.createElement("span");
+          deadlineSpan.innerText = `Deadline: ${deadline}`;
+          deadlineSpan.classList.add("mr-4");
+          const messageHeaderRightDiv = document.createElement("div");
+          messageHeaderRightDiv.appendChild(deadlineSpan);
+          messageHeaderRightDiv.appendChild(deleteButton);
+          messageHeader.appendChild(messageHeaderRightDiv);
+        } else {
+          // or just add the delete button to the message header
+          messageHeader.appendChild(deleteButton);
+        }
+
+        // Message body
+        const messageBody = document.createElement("div");
+        messageBody.classList.add("message-body", "level");
+        messageBody.innerHTML = `<p>${description}</p>`;
+        message.appendChild(messageBody);
 
         // Add a container for controls
         const controlsContainer = document.createElement("div");
@@ -160,15 +174,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = Number(task.getAttribute("data-id"));
     const val = database.getField(id);
     val.onsuccess = () => {
-      const {key, title, description, date, done} = val.result;
+      const {key, title, description, deadline, done} = val.result;
       var editTitle = document.getElementById("editTitle");
       editTitle.setAttribute("value", title);
 
       var editDescription = document.getElementById("editDescription");
       editDescription.innerHTML = description;
 
-      var editDate = document.getElementById("editDate");
-      editDate.setAttribute("value", date)
+      var editDeadline = document.getElementById("editDeadline");
+      editDeadline.setAttribute("value", deadline)
 
       document.getElementById("editDone").checked = done;
     }

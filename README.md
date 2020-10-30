@@ -14,7 +14,7 @@ You can read the blog [here](https://dev.to/devtony101/javascript-building-a-to-
 
 ## Features
 
-- **Create a task**: You can create a brand new task with a given title and description. Later that task is saved using JavaScript IndexedDB API.
+- **Create a task**: You can create a brand new task with a given title, description and deadline date. Later that task is saved using JavaScript IndexedDB API.
 - **Show saved tasks**: Everytime the page loads it will query the indexed database to get all saved tasks and display them as panels at the bottom of the page.
 - **Edit a task**: You can edit any given task at any given moment.
 - **Toggle the "done" status of a task**: You can toggle whether a task is "done" via either a checkbox or while editing the task.
