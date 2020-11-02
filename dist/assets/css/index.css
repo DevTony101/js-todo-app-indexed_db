@@ -9,6 +9,10 @@ body {
   margin: 0;
 }
 
+hr {
+  margin: 0.8rem 0;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 11px;
@@ -52,7 +56,7 @@ body {
   text-decoration: underline;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   form {
     margin-top: 20px;
   }
@@ -71,7 +75,7 @@ body {
   }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
   .main-content {
     border-radius: 1em;
   }
@@ -83,6 +87,17 @@ body {
 
   #gh-span-link {
     display: inline-block;
+  }
+}
+
+@media (min-width: 770px) {
+  /* TODO: Replace with is-expanded */
+  .is-horizontal > div {
+    width: 50%;
+  }
+
+  .is-horizontal > div:last-child {
+    margin-left: 1.2rem;
   }
 }
 

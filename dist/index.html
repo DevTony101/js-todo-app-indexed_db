@@ -14,7 +14,7 @@
   <title>To-Do App</title>
 </head>
 <body>
-<div class="container is-fluid mt-5">
+<div class="container is-fluid mt-4">
   <div class="card main-content">
     <div class="card-content">
       <p class="title">To-Do Application</p>
@@ -30,10 +30,19 @@
       <hr/>
       <p class="is-size-4" style="text-align: end;">Create a New Task</p>
       <form autocomplete="off" id="save-task">
-        <div class="field">
-          <label class="label">Title *</label>
-          <div class="control">
-            <input id="itTitle" class="input" type="text" placeholder="Learn How to Use the IndexedDB API" required />
+        <div class="field is-horizontal">
+          <div class="field">
+            <label class="label">Title *</label>
+            <div class="control">
+              <input id="itTitle" class="input is-expanded" type="text" placeholder="Learn How to Use the IndexedDB API" required />
+            </div>
+          </div>
+  
+          <div class="field">
+            <label class="label">Deadline</label>
+            <div class="control">
+              <input id="itDeadline" class="input is-expanded" type="date" />
+            </div>
           </div>
         </div>
 
@@ -43,13 +52,6 @@
             <textarea id="itDescription" class="textarea"
                       placeholder="Finish reading the tutorial and leave feedback!"
             ></textarea>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Deadline</label>
-          <div class="control">
-            <input id="itDeadline" class="input" type="date" />
           </div>
         </div>
 
@@ -122,11 +124,11 @@
 <script src="main.js"></script>
 <script>
   if (window.innerWidth <= 400) {
-    document.querySelector(".container").classList.remove("is-fluid", "mt-5");
+    document.querySelector(".container").classList.remove("is-fluid", "mt-4");
     document.querySelector(".title").classList.add("is-4");
     document.querySelector(".subtitle").classList.add("is-6");
   } else {
-    document.querySelector(".container").classList.add("is-fluid", "mt-5");
+    document.querySelector(".container").classList.add("is-fluid", "mt-4");
     document.querySelector(".title").classList.remove("is-4");
     document.querySelector(".subtitle").classList.remove("is-6");
   }
